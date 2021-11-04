@@ -1,4 +1,6 @@
 import { getCustomRepository } from "typeorm"
+import { classToPlain } from "class-transformer"
+
 import { UsersRepositories } from "../repositories/UserRepositories"
 
 class ListAdminUsersService {
@@ -11,7 +13,7 @@ class ListAdminUsersService {
       }
     })
 
-    return usersAdmin
+    return classToPlain(usersAdmin)
   }
 
 }

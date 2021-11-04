@@ -19,7 +19,7 @@ export function ensureAuthenticated(request: Request, response: Response, next: 
 
   try {
     // Validar se o token é valido
-    const { sub } = verify(token, "e396cab472d00f6441b4192142c2e3b3") as IPayload
+    const { sub } = verify(token, process.env.JWT_SECRET) as IPayload
 
     // Recuperar informações do usuario
     request.user_id = sub
@@ -28,6 +28,4 @@ export function ensureAuthenticated(request: Request, response: Response, next: 
   } catch (err) {
     return response.status(401).end()
   }
-
-
 }
